@@ -92,16 +92,23 @@ onMounted(async () => {
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 1rem;
 }
 
 .search-section {
   grid-column: 1 / -1;
+  animation: slideInDown 0.6s ease-out;
 }
 
 .weather-section, .map-section {
-  min-height: 300px;
+  height: 100%;
+  min-height: 550px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.weather-content {
+  animation: fadeIn 0.6s ease-out;
 }
 
 .loading-container {
@@ -109,25 +116,34 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 300px;
+  gap: 1.5rem;
 }
 
 .loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: var(--color-primary);
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(14, 165, 233, 0.2);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+}
+
+.loading-container p {
+  color: var(--color-text-light);
+  font-weight: 500;
+  font-size: 1.05rem;
 }
 
 .error-message {
-  padding: 1rem;
-  background-color: var(--color-error);
-  color: white;
-  border-radius: 8px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+  color: var(--color-error);
+  border-radius: 12px;
   text-align: center;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  font-weight: 500;
+  animation: shake 0.5s ease-in-out;
 }
 
 @keyframes spin {
@@ -136,10 +152,54 @@ onMounted(async () => {
   }
 }
 
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
 /* Responsive layout */
 @media (min-width: 768px) {
   .dashboard-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2.5rem;
   }
   
   .search-section {
@@ -148,10 +208,29 @@ onMounted(async () => {
   
   .weather-section {
     grid-column: 1;
+    grid-row: 2;
+    min-height: 600px;
   }
   
   .map-section {
     grid-column: 2;
+    grid-row: 2;
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: 0.75fr 1.25fr;
+    gap: 3rem;
+  }
+  
+  .weather-section {
+    min-height: 650px;
+  }
+  
+  .map-section {
+    min-height: 650px;
   }
 }
 
@@ -159,6 +238,7 @@ onMounted(async () => {
   .dashboard-grid {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
   }
   
   .map-section {

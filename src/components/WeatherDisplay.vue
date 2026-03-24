@@ -83,72 +83,89 @@ const formattedDate = computed(() => {
 
 <style scoped>
 .weather-display {
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  padding: 1.5rem;
+  padding: 2.5rem;
   color: white;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .weather-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1.5rem;
 }
 
 .location-info h2 {
   margin: 0;
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
 }
 
 .location-info p {
-  margin: 0;
-  font-size: 1rem;
-  opacity: 0.9;
+  margin: 0.5rem 0 0 0;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  font-weight: 500;
 }
 
 .weather-date {
-  font-size: 0.875rem;
-  opacity: 0.8;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  text-align: right;
+  font-weight: 500;
 }
 
 .weather-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  gap: 2rem;
 }
 
 .weather-icon {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
 }
 
 .weather-info {
-  text-align: right;
+  text-align: left;
 }
 
 .temperature {
-  font-size: 3rem;
-  font-weight: 600;
+  font-size: 4rem;
+  font-weight: 700;
   line-height: 1;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -2px;
 }
 
 .description {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   opacity: 0.9;
+  font-weight: 500;
 }
 
 .weather-details {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 1rem;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .detail-item {
@@ -156,32 +173,78 @@ const formattedDate = computed(() => {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .detail-label {
-  font-size: 0.75rem;
-  opacity: 0.8;
-  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .detail-value {
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-@media (max-width: 640px) {
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-display {
+    padding: 2rem;
+  }
+  
+  .weather-header {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  
+  .weather-date {
+    text-align: left;
+    margin-top: 1rem;
+  }
+  
   .weather-body {
     flex-direction: column;
     text-align: center;
+    margin-bottom: 2rem;
   }
   
   .weather-info {
     text-align: center;
-    margin-top: 1rem;
   }
   
   .temperature {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   
   .weather-details {

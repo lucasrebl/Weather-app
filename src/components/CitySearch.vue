@@ -89,8 +89,9 @@ const selectLocation = (location: Location) => {
 .city-search {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
+  animation: fadeInDown 0.6s ease-out;
 }
 
 .search-container {
@@ -100,37 +101,46 @@ const selectLocation = (location: Location) => {
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
+  padding: 1rem 1.2rem 1rem 3.2rem;
+  border-radius: 14px;
+  border: 2px solid var(--color-border);
   font-size: 1rem;
-  transition: all 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-light);
 }
 
 .search-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(52, 144, 220, 0.25);
+  box-shadow: 0 8px 25px rgba(14, 165, 233, 0.25);
+  outline: none;
+  background: white;
 }
 
 .search-icon {
   position: absolute;
-  left: 0.75rem;
+  left: 1rem;
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-text-light);
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  pointer-events: none;
 }
 
 .search-loader {
   position: absolute;
-  right: 0.75rem;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2.5px solid rgba(14, 165, 233, 0.2);
   border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 1s infinite linear;
@@ -138,50 +148,104 @@ const selectLocation = (location: Location) => {
 
 .search-results {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 0.8rem);
   left: 0;
+  right: 0;
   width: 100%;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  z-index: 10;
-  max-height: 300px;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  z-index: 20;
+  max-height: 350px;
   overflow-y: auto;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.2);
+  border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.4);
 }
 
 .search-results ul {
   list-style: none;
-  padding: 0;
+  padding: 0.5rem 0;
   margin: 0;
 }
 
 .search-result-item {
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.2rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  transition: background-color 0.2s;
+  align-items: center;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
 }
 
 .search-result-item:hover {
-  background-color: rgba(52, 144, 220, 0.1);
+  background: linear-gradient(90deg, rgba(14, 165, 233, 0.08) 0%, rgba(6, 182, 212, 0.04) 100%);
+  border-left-color: var(--color-primary);
+  padding-left: 1.4rem;
 }
 
 .location-name {
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .location-country {
   color: var(--color-text-light);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: rgba(14, 165, 233, 0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
 }
 
 .search-error {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
   color: var(--color-error);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   text-align: center;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes spin {
@@ -190,9 +254,14 @@ const selectLocation = (location: Location) => {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .city-search {
+    max-width: 100%;
+  }
+  
   .search-input {
-    font-size: 0.875rem;
+    font-size: 1rem;
+    padding: 0.9rem 1rem 0.9rem 2.8rem;
   }
 }
 </style>
