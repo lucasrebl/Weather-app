@@ -2,7 +2,7 @@
 
 Un tableau de bord météorologique moderne qui offre des informations météorologiques en temps réel et des prévisions détaillées en utilisant l'API Open-Meteo.
 
-🌐 **[Voir la démo en ligne]([http://localhost:5173](https://app-weather-map.netlify.app/))**
+🌐 **[Voir la démo en ligne](https://app-weather-map.netlify.app/)**
 
 ![Vue 3](https://img.shields.io/badge/Vue-3.4.38-4FC08D?style=flat-square&logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6?style=flat-square&logo=typescript&logoColor=white)
