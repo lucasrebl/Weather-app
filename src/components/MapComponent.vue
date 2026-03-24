@@ -92,7 +92,7 @@ const updateMapLocation = (lat: number, lng: number, name: string) => {
 }
 
 // make sure map redraws after updating center/marker
-watch(() => props.location, (newLocation) => {
+watch(() => props.location, () => {
   if (map && typeof map.invalidateSize === 'function') {
     setTimeout(() => map.invalidateSize(), 150)
   }
