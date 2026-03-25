@@ -138,25 +138,6 @@ src/
 - **Composants réutilisables** pour maintenabilité et scalabilité
 - **Gestion d'état efficace** avec les composables Vue
 
-## 🤝 Contribution
-
-Les contributions sont bienvenues ! Pour contribuer :
-
-1. **Fork le projet** sur GitHub
-2. **Créer une branche** pour votre fonctionnalité (`git checkout -b feature/ma-fonctionnalite`)
-3. **Commit vos changements** (`git commit -m 'Ajoute une nouvelle fonctionnalité'`)
-4. **Push vers la branche** (`git push origin feature/ma-fonctionnalite`)
-5. **Ouvrir une Pull Request** avec une description détaillée
-
-**Conventions** :
-- Suivre le style de code existant
-- Utiliser TypeScript partout
-- Ajouter des commentaires pour le code complexe
-
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
 ## 🔧 Configuration IDE Recommandée
 
 **Visual Studio Code** avec les extensions suivantes :
